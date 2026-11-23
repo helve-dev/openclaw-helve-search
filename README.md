@@ -7,7 +7,7 @@ Use one `HELVE_API_KEY` instead of juggling separate Brave, Tavily, Exa, and Ser
 ## Install
 
 ```bash
-openclaw plugins install clawhub:helve/openclaw-helve-search
+openclaw plugins install npm:@helve-dev/openclaw-helve-search
 ```
 
 ## Configure

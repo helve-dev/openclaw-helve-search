@@ -1,5 +1,5 @@
 {
-  "name": "@helve/openclaw-helve-search",
+  "name": "@helve-dev/openclaw-helve-search",
   "version": "0.1.0",
   "description": "OpenClaw web search provider plugin backed by Helve — one HELVE_API_KEY with ordered fallback across Brave, Tavily, Exa, and Serper plus per-key spend_limit_usd caps at 0% markup.",
   "type": "module",
@@ -51,9 +51,10 @@
     ],
     "install": {
       "clawhubSpec": "clawhub:helve/openclaw-helve-search",
-      "defaultChoice": "clawhub",
+      "defaultChoice": "npm",
       "minHostVersion": ">=2026.3.24-beta.2",
-      "allowInvalidConfigRecovery": true
+      "allowInvalidConfigRecovery": true,
+      "npmSpec": "@helve-dev/openclaw-helve-search"
     },
     "compat": {
       "pluginApi": ">=2026.3.24-beta.2",
