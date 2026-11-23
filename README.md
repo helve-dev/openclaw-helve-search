@@ -2,7 +2,7 @@
 
 Native OpenClaw `web_search` provider plugin backed by [Helve](https://helve.dev).
 
-Use one `HELVE_API_KEY` instead of juggling separate Brave, Tavily, Exa, and Serper accounts. When an engine returns `429`, a quota error, or an upstream error, the plugin automatically falls back down the ordered chain (`brave -> tavily -> exa -> serper`) and enforces deterministic per-key `spend_limit_usd` caps at **0% markup** (`$1` free credit ≈ 1,000 Serper searches).
+Use one `HELVE_API_KEY` instead of juggling separate Brave, Tavily, Exa, and Serper accounts. When an engine returns `429`, a quota error, or an upstream error, the plugin automatically falls back down the ordered chain (`brave -> tavily -> exa -> serper`) and enforces deterministic per-key `spend_limit_usd` caps at **0% markup** (`$1` free credit ≈ 1,000 Serper searches, plus a 1:1 first top-up credit match up to `+$10` bonus — add `$5` get `$10`, add `$10` get `$20`).
 
 ## Install
 
