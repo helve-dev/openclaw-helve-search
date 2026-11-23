@@ -1,0 +1,93 @@
+{
+  "id": "helve-search",
+  "name": "Helve Web Search",
+  "description": "Web search provider for OpenClaw backed by Helve: one HELVE_API_KEY with ordered fallback across Brave, Tavily, Exa, and Serper plus deterministic spend_limit_usd caps at 0% markup.",
+  "categories": ["web"],
+  "activation": {
+    "onStartup": false
+  },
+  "setup": {
+    "providers": [
+      {
+        "id": "helve",
+        "envVars": ["HELVE_API_KEY"]
+      }
+    ]
+  },
+  "uiHints": {
+    "webSearch.apiKey": {
+      "label": "Helve API Key",
+      "help": "Helve API key (fallback: HELVE_API_KEY env var). $1 free credit ≈ 1,000 Serper searches at 0% markup. Configure per-key spend_limit_usd at https://helve.dev/dashboard.",
+      "sensitive": true,
+      "placeholder": "sk_live_..."
+    },
+    "webSearch.baseUrl": {
+      "label": "Helve Base URL",
+      "help": "Override Helve API base URL (default: https://helve.dev)."
+    },
+    "webSearch.fallbackOrder": {
+      "label": "Provider Fallback Order",
+      "help": "Ordered list of search engines tried on 429, quota, or upstream auth errors (default: brave, tavily, exa, serper)."
+    },
+    "webSearch.spendLimitUsd": {
+      "label": "Session Spend Limit (USD)",
+      "help": "Optional client-side USD cap for this session in addition to server-side per-key spend_limit_usd."
+    }
+  },
+  "configContracts": {
+    "secretInputs": {
+      "paths": [
+        {
+          "path": "webSearch.apiKey",
+          "expected": "string",
+          "ownerKind": "capability"
+        }
+      ]
+    }
+  },
+  "contracts": {
+    "webSearchProviders": ["helve"],
+    "tools": ["helve_search"]
+  },
+  "configGroups": [
+    {
+      "id": "web-search",
+      "title": "Web search",
+      "order": 10,
+      "properties": ["webSearch"]
+    }
+  ],
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "webSearch": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "apiKey": {
+            "type": ["string", "object"]
+          },
+          "baseUrl": {
+            "type": "string"
+          },
+          "fallbackOrder": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["brave", "tavily", "exa", "serper", "fusion", "auto", "parallel", "perplexity", "firecrawl"]
+            }
+          },
+          "spendLimitUsd": {
+            "type": "number",
+            "minimum": 0
+          }
+        }
+      }
+    }
+  },
+  "recommendedPrompts": [
+    "Search the web with Helve for the latest OpenClaw plugin SDK changes.",
+    "Run a Helve web search restricted to docs.openclaw.ai from the past week."
+  ]
+}
